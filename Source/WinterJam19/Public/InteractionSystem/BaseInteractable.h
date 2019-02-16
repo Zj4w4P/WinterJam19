@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "BaseInteractable.generated.h"
 
+class ACrowCharacter;
+
 UCLASS()
 class WINTERJAM19_API ABaseInteractable : public AActor
 {
@@ -22,7 +24,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	virtual void OnInteraction();
+	virtual void OnInteraction(ACrowCharacter* crowCharacterptr);
 	
 	
 };

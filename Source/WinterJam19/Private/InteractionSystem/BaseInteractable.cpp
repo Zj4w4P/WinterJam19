@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BaseInteractable.h"
+#include "Public/CrowCharacter.h"
 
 
 // Sets default values
@@ -24,7 +25,7 @@ void ABaseInteractable::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-void ABaseInteractable::OnInteraction()
+void ABaseInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 {
 	UE_LOG(LogTemp, Warning, TEXT("The item with name %s was interacted with."), *(this->GetName()))
 }

@@ -2,6 +2,7 @@
 
 #include "InteractionComponent.h"
 #include "Public/InteractionSystem/BaseInteractable.h"
+#include "Public/CrowCharacter.h"
 #include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
@@ -54,8 +55,9 @@ void UInteractionComponent::RaycastInteract(FVector LookDirection)
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("UInteraction Component ::  Hit %s"), *(traceHitResult.Actor->GetName()));
-			interactableRef->OnInteraction();
+			ACrowCharacter* owningCrow  = Cast<ACrowCharacter>(this->GetOwner());
+			if (!owningCrow) return;
+			interactableRef->OnInteraction(owningCrow);
 		}
 	}
 
