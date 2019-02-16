@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "InteractionComponent.h"
+#include "Public/InteractionSystem/BaseInteractable.h"
 #include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
@@ -38,11 +39,25 @@ void UInteractionComponent::RaycastInteract(FVector LookDirection)
 {
 	// TODO, we probably want to change it to head socket or something like this, root is kinda iffy
 	FVector startPos = this->GetOwner()->GetActorLocation();
-	//
 	FVector endPos = startPos + LookDirection * castingRange;
 	FHitResult traceHitResult;
-	FCollisionObjectQueryParams queryParams = FCollisionObjectQueryParams();
+	//FCollisionObjectQueryParams queryParams = FCollisionObjectQueryParams();
+
 	DrawDebugLine(GetWorld(), startPos, endPos, FColor::Orange, true, 8, 2.0F);
-	//this->GetWorld()->LineTraceSingleByObjectType(traceHitResult, startPos, endPos,queryParams);
+	if (this->GetWorld()->LineTraceSingleByChannel(traceHitResult, startPos, endPos,ECC_GameTraceChannel1))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UInteraction Component ::  Hit %s"),*(traceHitResult.Actor->GetName()));
+		ABaseInteractable* interactableRef = Cast<ABaseInteractable>(traceHitResult.Actor);
+		if (!interactableRef)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("UInteraction Component :: Unknown Object Hit"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("UInteraction Component ::  Hit %s"), *(traceHitResult.Actor->GetName()));
+			interactableRef->OnInteraction();
+		}
+	}
+
 
 }
