@@ -23,9 +23,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	void RaycastInteract(FVector LookDirection);
+	UFUNCTION(BlueprintCallable, Category = "Interaction")
+		void RaycastInteract(FVector LookDirection);
 private:
-	UPROPERTY(EditInstanceOnly, Category = "Raycasting")
+	UPROPERTY(EditAnywhere, Category = "Raycasting")
 		float castingRange = 400.0f; // sensible default i guess?;
 		
 	
