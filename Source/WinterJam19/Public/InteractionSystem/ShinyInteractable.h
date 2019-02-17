@@ -14,8 +14,17 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 {
 	GENERATED_BODY()
 	
-		virtual void OnInteraction(ACrowCharacter* crowCharacterptr) override;
-	
+	protected:
+		virtual void BeginPlay() override;
 	private:
+		virtual void OnInteraction(ACrowCharacter* crowCharacterptr) override;
 		ACrowCharacter* owningCrow = nullptr;
+		UPROPERTY(EditDefaultsOnly, Category = "Points")
+			int minPointsGiven = 100;
+		UPROPERTY(EditDefaultsOnly, Category = "Points")
+			int maxPointsGiven = 200;
+		UPROPERTY(EditInstanceOnly, Category = "Points")
+			int pointsGiven = 100;
+	public:
+		bool bIsActive = true;
 };
