@@ -37,6 +37,7 @@ void  ALadyCrowNest::forceDrop(AActor* carriedItem)
 	interactableRef->bIsActive = false;
 	interactableRef->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 	interactableRef->SetActorEnableCollision(true);
+	interactableRef->OnItemDrop.Broadcast();
 	UE_LOG(LogTemp, Error, TEXT("ALadyCrowNest :: Proper overlapped item!"));
 	
 }

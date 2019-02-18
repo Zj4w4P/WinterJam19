@@ -6,6 +6,7 @@
 #include "InteractionSystem/BaseInteractable.h"
 #include "ShinyInteractable.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnablePhysicsDelegate);
 /**
  * 
  */
@@ -27,4 +28,6 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 			int pointsGiven = 100;
 	public:
 		bool bIsActive = true;
+		UPROPERTY(BlueprintAssignable)
+			FEnablePhysicsDelegate OnItemDrop;
 };
