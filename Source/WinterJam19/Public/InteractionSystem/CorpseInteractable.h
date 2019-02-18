@@ -29,10 +29,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Fuel")
 		float foodEatenPerTick = 0.1f;
 
+	
 	 TArray<ACrowCharacter*> eatingCrows;
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void OnInteraction(ACrowCharacter* crowCharacterptr) override;
+
 public:
 	virtual void Tick(float DeltaTime) override;
 };

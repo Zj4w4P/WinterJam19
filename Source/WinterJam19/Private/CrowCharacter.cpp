@@ -39,5 +39,12 @@ void ACrowCharacter::SetSlotsAvalible(int amountOfSpace)
 {
 	this->slotsAvaliable = amountOfSpace;
 }
-
+float  ACrowCharacter::GetCurrentSatedLevel()
+{
+	return currentSatedLevel;
+}
+void  ACrowCharacter::SetCurrentSatedLevel(float newSatedLevel)
+{
+	currentSatedLevel = newSatedLevel;
+}
 

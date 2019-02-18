@@ -16,11 +16,35 @@ void ACorpseInteractable::Tick(float DeltaSeconds)
 
 
 	// Feeding crows in tick
-	if (eatingCrows.Num() == 0) return;
-	for ( ACrowCharacter* crow : eatingCrows)
+	if (eatingCrows.Num() == 0)
 	{
+		remainingFood += foodRestorePerTick * DeltaSeconds;
+		return;
+	}
+	for (ACrowCharacter* crow : eatingCrows)
+	{
+		float foodEaten = DeltaSeconds * foodEatenPerTick;
+		if (remainingFood <= 0)
+		{
+			// Force crow away from feeding
+			return;
+		}
+		else
+		{
+			remainingFood -= foodEaten;
+			crow->SetCurrentSatedLevel(crow->GetCurrentSatedLevel() + foodEaten);
+		}
 		
 	}
+}
+void ACorpseInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Wellp it works sort of?"));
+	if(eatingCrows.Contains(crowCharacterptr)) return;
+	eatingCrows.Add(crowCharacterptr);
+	// we should disable his controls for as long as he keeps eating, meaning release of Right mouse button
+	UE_LOG(LogTemp, Warning, TEXT("Wellp it works sort of 2?"));
+
 }
 
 

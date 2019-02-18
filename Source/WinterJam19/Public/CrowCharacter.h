@@ -28,6 +28,11 @@ public:
 
 	int GetSlotsAvalible();
 	void SetSlotsAvalible(int amountOfSpace);
+	UFUNCTION(BlueprintPure, Category = "Hunger")
+	float GetCurrentSatedLevel();
+	UFUNCTION(BlueprintCallable, Category = "Hunger")
+	void SetCurrentSatedLevel(float newSatedLevel);
+
 protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Hunger")
 		float currentSatedLevel = 150.0f;
