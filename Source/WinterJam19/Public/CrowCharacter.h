@@ -6,6 +6,10 @@
 #include "GameFramework/Character.h"
 #include "CrowCharacter.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FToggleMovement, bool, bIsTurnedOn);
+
+class ACorpseInteractable;
+
 UCLASS()
 class WINTERJAM19_API ACrowCharacter : public ACharacter
 {
@@ -33,6 +37,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Hunger")
 	void SetCurrentSatedLevel(float newSatedLevel);
 
+	UFUNCTION(BlueprintCallable, Category = "Hunger")
+		void ForceFeedingFinish();
+	UFUNCTION(BlueprintCallable, Category = "Hunger")
+		void ForceFeedingStart();
+	UPROPERTY(BlueprintAssignable)
+		FToggleMovement toggleMovement;
+		inline void SetEatenCorpse(ACorpseInteractable* corpseEaten) { eatenCorpseHeap = corpseEaten; }
+
+	
 protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Hunger")
 		float currentSatedLevel = 150.0f;
@@ -42,9 +55,12 @@ protected:
 	//How seated the character currently is
 	UPROPERTY(BlueprintReadWrite, Category = "Hunger")
 		bool isEating = false;
+	UFUNCTION(BlueprintCallable)
+		void OnButtonReleased();
+	
 private:
 	// Tracks amount of free space for shiny objects
 	int slotsAvaliable = 1;
-
+	ACorpseInteractable* eatenCorpseHeap = nullptr;
 
 };

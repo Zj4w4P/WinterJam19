@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CrowCharacter.h"
+#include "Public/InteractionSystem/CorpseInteractable.h"
 
 
 // Sets default values
@@ -11,26 +12,37 @@ ACrowCharacter::ACrowCharacter()
 
 }
 
-// Called when the game starts or when spawned
 void ACrowCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp,Error,TEXT("Is of workings"))
 }
 
-// Called every frame
 void ACrowCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
-
-// Called to bind functionality to input
 void ACrowCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
+
+// Feeding system scripts
+
+void  ACrowCharacter::ForceFeedingFinish()
+{
+	toggleMovement.Broadcast(true);
+}
+void  ACrowCharacter::ForceFeedingStart()
+{
+	toggleMovement.Broadcast(false);
+}
+
+
+// Setters and getters
+
 int ACrowCharacter::GetSlotsAvalible()
 {
 	return slotsAvaliable;
@@ -46,5 +58,12 @@ float  ACrowCharacter::GetCurrentSatedLevel()
 void  ACrowCharacter::SetCurrentSatedLevel(float newSatedLevel)
 {
 	currentSatedLevel = newSatedLevel;
+}
+void ACrowCharacter::OnButtonReleased()
+{
+	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow"));
+	if (!eatenCorpseHeap) return;
+	eatenCorpseHeap->OnButtonReleased(this);
+	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow was not empty"));
 }
 

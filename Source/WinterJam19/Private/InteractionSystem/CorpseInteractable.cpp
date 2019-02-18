@@ -27,6 +27,8 @@ void ACorpseInteractable::Tick(float DeltaSeconds)
 		if (remainingFood <= 0)
 		{
 			// Force crow away from feeding
+			crow->ForceFeedingFinish();
+			eatingCrows.Remove(crow);
 			return;
 		}
 		else
@@ -39,12 +41,19 @@ void ACorpseInteractable::Tick(float DeltaSeconds)
 }
 void ACorpseInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Wellp it works sort of?"));
+	
 	if(eatingCrows.Contains(crowCharacterptr)) return;
 	eatingCrows.Add(crowCharacterptr);
+	crowCharacterptr->SetEatenCorpse(this);
 	// we should disable his controls for as long as he keeps eating, meaning release of Right mouse button
-	UE_LOG(LogTemp, Warning, TEXT("Wellp it works sort of 2?"));
+	crowCharacterptr->ForceFeedingStart();
 
 }
+void ACorpseInteractable::OnButtonReleased(ACrowCharacter* crowCharacterptr)
+{
 
+	crowCharacterptr->ForceFeedingFinish();
+	eatingCrows.Remove(crowCharacterptr);
+	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: Feeding finished!"));
+}
 

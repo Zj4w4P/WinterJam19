@@ -38,4 +38,5 @@ protected:
 
 public:
 	virtual void Tick(float DeltaTime) override;
+	void OnButtonReleased(ACrowCharacter* crowCharacterptr);
 };
