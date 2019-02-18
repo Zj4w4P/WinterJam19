@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "CrowCharacter.generated.h"
 
+
+
 UCLASS()
 class WINTERJAM19_API ACrowCharacter : public ACharacter
 {
@@ -32,4 +34,5 @@ public:
 private:
 	// Tracks amount of free space for shiny objects
 	int slotsAvaliable = 1;
+
 };

@@ -13,6 +13,8 @@ void AShinyInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 		// We attach element to the character mesh
 	this->AttachToComponent(crowCharacterptr->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, "Dziob");
 		// The player is now owning shiny object! we should represent that
+	if (this->owningCrow != NULL)
+		owningCrow->SetSlotsAvalible(owningCrow->GetSlotsAvalible() + 1);
 	this->owningCrow = crowCharacterptr;
 		// Make slots unavalible for him
 	crowCharacterptr->SetSlotsAvalible(crowCharacterptr->GetSlotsAvalible() - 1);
