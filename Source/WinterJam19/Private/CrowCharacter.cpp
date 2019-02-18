@@ -40,3 +40,4 @@ void ACrowCharacter::SetSlotsAvalible(int amountOfSpace)
 	this->slotsAvaliable = amountOfSpace;
 }
 
+
