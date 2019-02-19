@@ -2,6 +2,7 @@
 
 #include "CrowCharacter.h"
 #include "Public/InteractionSystem/CorpseInteractable.h"
+#include "Public/InteractionSystem/ShinyInteractable.h"
 
 
 // Sets default values
@@ -59,6 +60,12 @@ void  ACrowCharacter::SetCurrentSatedLevel(float newSatedLevel)
 {
 	currentSatedLevel = newSatedLevel;
 }
+AShinyInteractable* ACrowCharacter::GetPickup() {
+	return this->pickup;
+}
+void ACrowCharacter::SetPickup(AShinyInteractable* pickup) {
+	this->pickup = pickup;
+}
 void ACrowCharacter::OnButtonReleased()
 {
 	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow"));
@@ -66,4 +73,6 @@ void ACrowCharacter::OnButtonReleased()
 	eatenCorpseHeap->OnButtonReleased(this);
 	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow was not empty"));
 }
+
+
 

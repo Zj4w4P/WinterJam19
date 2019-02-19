@@ -16,7 +16,7 @@ void AShinyInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 	// it was already picked so you should not be able to pick it again
 	if (this->bIsActive == false) return;
 	// We have no slots avalible, so we cant pickup an item
-	if (crowCharacterptr->GetSlotsAvalible() <= 0) return;
+	if (crowCharacterptr->GetSlotsAvalible() <= 0 && crowCharacterptr != NULL) return;
 		// We attach element to the character mesh
 	this->AttachToComponent(crowCharacterptr->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, "Dziob");
 		// If someone else was carrying the shiny object, we should drop it!
@@ -26,6 +26,16 @@ void AShinyInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 	}
 		// The player is now owning shiny object! we should represent that
 	this->owningCrow = crowCharacterptr;
+	owningCrow->SetPickup(this);
 		// Make slots unavalible for him
 	crowCharacterptr->SetSlotsAvalible(crowCharacterptr->GetSlotsAvalible() - 1);
+}
+
+void AShinyInteractable::Drop() {
+	UE_LOG(LogTemp, Warning, TEXT("Drop"));
+
+	//this->bIsActive = bactivate;
+	this->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	this->SetActorEnableCollision(true);
+	this->OnItemDrop.Broadcast();
 }

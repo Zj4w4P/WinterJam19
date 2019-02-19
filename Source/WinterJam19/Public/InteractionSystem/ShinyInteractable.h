@@ -30,4 +30,5 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 		bool bIsActive = true;
 		UPROPERTY(BlueprintAssignable)
 			FEnablePhysicsDelegate OnItemDrop;
+		void Drop();
 };
