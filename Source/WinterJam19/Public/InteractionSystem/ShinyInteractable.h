@@ -24,12 +24,13 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 			int minPointsGiven = 100;
 		UPROPERTY(EditDefaultsOnly, Category = "Points")
 			int maxPointsGiven = 200;
-		UPROPERTY(EditInstanceOnly, Category = "Points")
-			int pointsGiven = 100;
+	
 	public:
 		UPROPERTY(BLueprintReadWrite, Category = "Pickup")
 		bool bIsActive = true;
 		UPROPERTY(BlueprintAssignable)
 			FEnablePhysicsDelegate OnItemDrop;
 		void Drop();
+		UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Points")
+			int pointsGiven = 100;
 };
