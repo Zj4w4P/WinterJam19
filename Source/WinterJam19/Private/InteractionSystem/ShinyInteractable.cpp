@@ -35,8 +35,7 @@ void AShinyInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 
 void AShinyInteractable::Drop() {
 	UE_LOG(LogTemp, Warning, TEXT("Drop"));
-
-	//this->bIsActive = bactivate;
+	this->bIsActive = true;
 	this->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 	this->SetActorEnableCollision(true);
 	this->OnItemDrop.Broadcast();

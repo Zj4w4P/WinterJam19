@@ -38,6 +38,8 @@ public:
 		float GetCurrentSatedLevel();
 	UFUNCTION(BlueprintCallable, Category = "Hunger")
 		void SetCurrentSatedLevel(float newSatedLevel);
+	UFUNCTION(BlueprintPure, Category = "Hunger")
+		float GetMaxSatedLevel();
 
 	UFUNCTION(BlueprintCallable, Category = "Hunger")
 		void ForceFeedingFinish();

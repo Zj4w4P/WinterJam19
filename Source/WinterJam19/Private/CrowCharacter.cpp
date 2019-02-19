@@ -40,6 +40,14 @@ void  ACrowCharacter::ForceFeedingStart()
 {
 	toggleMovement.Broadcast(false);
 }
+void ACrowCharacter::OnButtonReleased()
+{
+	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow"));
+	if (!eatenCorpseHeap) return;
+	eatenCorpseHeap->OnButtonReleased(this);
+	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow was not empty"));
+}
+
 
 
 // Setters and getters
@@ -66,13 +74,11 @@ AShinyInteractable* ACrowCharacter::GetPickup() {
 void ACrowCharacter::SetPickup(AShinyInteractable* pickup) {
 	this->pickup = pickup;
 }
-void ACrowCharacter::OnButtonReleased()
+float ACrowCharacter::GetMaxSatedLevel()
 {
-	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow"));
-	if (!eatenCorpseHeap) return;
-	eatenCorpseHeap->OnButtonReleased(this);
-	UE_LOG(LogTemp, Warning, TEXT("On Button Released:: crow was not empty"));
+	return maxSatedLevel;
 }
+
 
 
 

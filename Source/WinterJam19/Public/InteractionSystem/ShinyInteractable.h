@@ -27,6 +27,7 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 		UPROPERTY(EditInstanceOnly, Category = "Points")
 			int pointsGiven = 100;
 	public:
+		UPROPERTY(BLueprintReadWrite, Category = "Pickup")
 		bool bIsActive = true;
 		UPROPERTY(BlueprintAssignable)
 			FEnablePhysicsDelegate OnItemDrop;
