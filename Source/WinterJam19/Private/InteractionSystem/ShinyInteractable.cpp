@@ -25,6 +25,8 @@ void AShinyInteractable::OnInteraction(ACrowCharacter* crowCharacterptr)
 		owningCrow->SetSlotsAvalible(owningCrow->GetSlotsAvalible() + 1);
 	}
 		// The player is now owning shiny object! we should represent that
+	if (this->owningCrow != NULL)
+		owningCrow->SetSlotsAvalible(owningCrow->GetSlotsAvalible() + 1);
 	this->owningCrow = crowCharacterptr;
 	owningCrow->SetPickup(this);
 		// Make slots unavalible for him
