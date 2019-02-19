@@ -40,3 +40,7 @@ void AShinyInteractable::Drop() {
 	this->SetActorEnableCollision(true);
 	this->OnItemDrop.Broadcast();
 }
+ACrowCharacter* AShinyInteractable::GetCrowPtr()
+{
+	return this->owningCrow;
+}

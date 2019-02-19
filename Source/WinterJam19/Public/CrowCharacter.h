@@ -49,8 +49,14 @@ public:
 		FToggleMovement toggleMovement;
 		inline void SetEatenCorpse(ACorpseInteractable* corpseEaten) { eatenCorpseHeap = corpseEaten; }
 
-
-	
+		UFUNCTION(BlueprintCallable, Category = "Points")
+			void AddScore(int scoreToAdd);
+		UFUNCTION(BlueprintPure, Category = "Points")
+			int GetScore();
+		UFUNCTION(BlueprintCallable, Category = "Points")
+			void SetPoints(int PointsToSet);
+		UFUNCTION(BlueprintPure, Category = "Points")
+			int GetPoints();
 		
 
 	
@@ -73,5 +79,7 @@ private:
 	int slotsAvaliable = 1;
 	AShinyInteractable* pickup = nullptr;
 	ACorpseInteractable* eatenCorpseHeap = nullptr;
-
+	int playerScore = 0;
+	// i know i shouldnt but time is money..
+	int pointCap = 0;
 };

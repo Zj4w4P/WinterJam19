@@ -78,7 +78,22 @@ float ACrowCharacter::GetMaxSatedLevel()
 {
 	return maxSatedLevel;
 }
+void ACrowCharacter::AddScore(int scoreToAdd)
+{
+	this->playerScore += scoreToAdd;
+	UE_LOG(LogTemp, Warning, TEXT("Score:: %d"), playerScore);
+}
+int ACrowCharacter::GetScore()
+{
+	return this->playerScore;
+}
 
-
-
+void ACrowCharacter::SetPoints(int PointsToSet)
+{
+	pointCap = PointsToSet;
+}
+int ACrowCharacter::GetPoints()
+{
+	return this->pointCap;
+}
 

@@ -33,4 +33,6 @@ class WINTERJAM19_API AShinyInteractable : public ABaseInteractable
 		void Drop();
 		UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Points")
 			int pointsGiven = 100;
+		UFUNCTION(BlueprintPure)
+			ACrowCharacter* GetCrowPtr();
 };

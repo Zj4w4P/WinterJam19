@@ -2,6 +2,7 @@
 
 #include "LadyCrowNest.h"
 #include "Runtime/Engine/Classes/Components/BoxComponent.h"
+#include "Public/CrowCharacter.h"
 #include "Public/InteractionSystem/ShinyInteractable.h"
 
 // Sets default values
@@ -32,12 +33,14 @@ void  ALadyCrowNest::forceDrop(AActor* carriedItem)
 	{
 		UE_LOG(LogTemp, Error, TEXT("ALadyCrowNest :: Unknown overlapped item!"));
 		return;
+		
 	}
 	// Object is given to crow mommy, no point in giving it
 	interactableRef->bIsActive = false;
 	interactableRef->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 	interactableRef->SetActorEnableCollision(true);
 	interactableRef->OnItemDrop.Broadcast();
+	interactableRef->GetCrowPtr()->SetSlotsAvalible(interactableRef->GetCrowPtr()->GetSlotsAvalible() + 1);
 	UE_LOG(LogTemp, Error, TEXT("ALadyCrowNest :: Proper overlapped item!"));
 	
 }
