@@ -7,6 +7,7 @@
 #include "CrowCharacter.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FToggleMovement, bool, bIsTurnedOn);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnFinishGame);
 
 class ACorpseInteractable;
 class AShinyInteractable;
@@ -47,6 +48,8 @@ public:
 		void ForceFeedingStart();
 	UPROPERTY(BlueprintAssignable)
 		FToggleMovement toggleMovement;
+	UPROPERTY(BlueprintAssignable)
+		FOnFinishGame onGameFinished;
 		inline void SetEatenCorpse(ACorpseInteractable* corpseEaten) { eatenCorpseHeap = corpseEaten; }
 
 		UFUNCTION(BlueprintCallable, Category = "Points")

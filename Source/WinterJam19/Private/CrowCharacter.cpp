@@ -81,6 +81,11 @@ float ACrowCharacter::GetMaxSatedLevel()
 void ACrowCharacter::AddScore(int scoreToAdd)
 {
 	this->playerScore += scoreToAdd;
+	if (this->playerScore >= 2500)
+	{
+		//another development sin
+		onGameFinished.Broadcast();
+	}
 	UE_LOG(LogTemp, Warning, TEXT("Score:: %d"), playerScore);
 }
 int ACrowCharacter::GetScore()
